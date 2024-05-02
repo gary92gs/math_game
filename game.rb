@@ -15,18 +15,15 @@ class Game
   end
 
   def game_loop
-    puts "starting game_loop"
     while !self.winner
 
       print_turn
       generate_new_question
       print_question
-      player_answer = get_user_input
+      player_answer = get_user_input.to_i
       print_answer_evaluation(player_answer)
+      change_turn
 
-
-
-      # check if any player has lost
       if player1.num_lives == 0
         self.winner = 2
       end
@@ -39,6 +36,7 @@ class Game
   end
 
   def print_turn
+    puts ""
     puts "----- TURN #{self.turn} -----"
     puts "P1: #{self.player1.num_lives}/3 vs P2: #{self.player2.num_lives}/3"
   end
@@ -48,11 +46,11 @@ class Game
   end
 
   def print_winner
-    puts "#{self.winner} wins!"
+    puts "Player #{self.winner} wins!"
   end
 
   def print_answer_evaluation(player_answer)
-    if player_answer = self.question.answer
+    if player_answer == self.question.answer
       puts "YES! You are correct"
     else
       puts "Seriously? No!"
@@ -69,7 +67,7 @@ class Game
   end
 
   def change_turn
-    self.turn++
+    self.turn += 1
     self.turn_player = self.turn % 2 == 0 ? 2 : 1
   end
 
