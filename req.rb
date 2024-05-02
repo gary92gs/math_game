@@ -13,12 +13,11 @@
 # @turn
 # @turn_player
 # @winner
-# print_new_turn
-# print_new_question
+# print_turn
+# print_question
 # print_winner
 # game_loop
 # change turn
-# end game
 
 # QUESTION
 # @answer
